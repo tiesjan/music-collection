@@ -1,0 +1,28 @@
+{% extends "compilations/base.html" %}
+
+{% block page_contents %}
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url "series-list" %}">Compilation series</a></li>
+    <li class="breadcrumb-item active">{{ series.name }}</li>
+  </ol>
+</nav>
+
+<h1 class="mb-4">Releases</h1>
+
+<div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4">
+{% for release in release_list %}
+  <div class="col mb-4">
+    <div class="card h-100">
+      <img class="card-img-top" src="https://via.placeholder.com/500x500">
+      <div class="card-body">
+        <a class="stretched-link" href="{% url "release-detail" series=release.series.slug release=release.slug %}">{{ release.name }}</a>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <div class="col-md-4">
+    <p><em>No releases for this series yet.</em></p>
+  </div>
+{% endfor %}
+{% endblock %}

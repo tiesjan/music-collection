@@ -1,0 +1,27 @@
+{% extends "compilations/base.html" %}
+
+{% block page_contents %}
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active">Compilation series</li>
+  </ol>
+</nav>
+
+<h1 class="mb-4">Compilation series</h1>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+{% for series in series_list %}
+  <div class="col mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <a class="stretched-link" href="{% url "release-list" series=series.slug %}">{{ series.name }}</a>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <div class="col-md-4">
+    <p><em>No series yet.</em></p>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}
