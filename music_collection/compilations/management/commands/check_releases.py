@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
+from django.db.models import F
 from django.utils import timezone
 
 from music_collection.compilations.models import Release, Track
@@ -53,7 +54,7 @@ class Command(BaseCommand):
         api_client = DiscogsAPIClient(settings.DISCOGS_API_ACCESS_TOKEN)
 
         queryset = Release.objects.exclude(discogs_release_id=None).order_by(
-                "last_checked_at", "created_at")
+                F("last_checked_at").asc(nulls_first=True), F("created_at").asc())
         for release in queryset[:50]:
             # Retrieve Discogs release
             release_info = api_client.get_release(release.discogs_release_id)
