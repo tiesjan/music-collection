@@ -38,6 +38,17 @@ class Release(models.Model):
         validators=[MinValueValidator(1900), MaxValueValidator(2099)]
     )
 
+    discogs_release_id = models.PositiveIntegerField(
+        blank=True,
+        null=True,
+        unique=True
+    )
+
+    last_checked_at = models.DateTimeField(
+        blank=True,
+        null=True
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True
     )
