@@ -46,13 +46,14 @@ class Migration(migrations.Migration):
             name='Track',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('order_index', models.PositiveIntegerField()),
                 ('position', models.CharField(max_length=10)),
                 ('artist', models.CharField(max_length=250)),
                 ('title', models.CharField(max_length=250)),
                 ('release', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tracks', to='compilations.Release')),
             ],
             options={
-                'unique_together': {('release', 'position')},
+                'unique_together': {('release', 'order_index')},
                 'verbose_name': 'Track',
                 'verbose_name_plural': 'Tracks',
             },

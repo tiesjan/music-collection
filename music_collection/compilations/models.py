@@ -48,7 +48,7 @@ class Release(models.Model):
 
     @property
     def ordered_tracks(self):
-        return self.tracks.order_by("position")
+        return self.tracks.order_by("order_index")
 
     def __str__(self):
         return self.name
@@ -67,6 +67,8 @@ class Track(models.Model):
         related_name="tracks"
     )
 
+    order_index = models.PositiveIntegerField()
+
     position = models.CharField(
         max_length=10
     )
@@ -83,7 +85,9 @@ class Track(models.Model):
         return "{}. {} - {}".format(self.position, self.artist, self.title)
 
     class Meta:
-        unique_together = ("release", "position")
+        unique_together = (
+            ("release", "order_index"),
+        )
 
         verbose_name = "Track"
         verbose_name_plural = "Tracks"

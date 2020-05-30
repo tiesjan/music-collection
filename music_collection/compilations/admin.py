@@ -4,8 +4,9 @@ from music_collection.compilations.models import Release, Series, Track
 
 
 class TrackInlineAdmin(admin.TabularInline):
+    extra = 0
     model = Track
-    ordering = ("position",)
+    ordering = ("order_index",)
 
 
 @admin.register(Release)
