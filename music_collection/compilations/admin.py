@@ -25,8 +25,9 @@ class ReleaseAdmin(admin.ModelAdmin):
             "fields": ("created_at", "last_checked_at", "updated_at")
         })
     )
-    ordering = ("name",)
+    ordering = ("series__name", "order_index",)
     readonly_fields = ("created_at", "last_checked_at", "updated_at")
+    sortable_by = ()
 
 
 @admin.register(Series)

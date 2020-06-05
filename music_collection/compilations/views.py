@@ -24,7 +24,8 @@ class ReleaseBaseView(object):
         return context
 
     def get_queryset(self):
-        return Release.objects.filter(series=self.series)
+        queryset = super(ReleaseBaseView, self).get_queryset()
+        return queryset.filter(series=self.series)
 
 
 class ReleaseListView(ReleaseBaseView, ListView):
