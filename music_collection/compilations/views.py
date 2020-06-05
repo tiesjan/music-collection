@@ -28,7 +28,7 @@ class ReleaseBaseView(object):
 
 
 class ReleaseListView(ReleaseBaseView, ListView):
-    ordering = ("name",)
+    ordering = ("order_index",)
 
 
 class ReleaseDetailView(ReleaseBaseView, DetailView):

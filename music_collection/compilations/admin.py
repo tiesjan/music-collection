@@ -16,7 +16,10 @@ class ReleaseAdmin(admin.ModelAdmin):
     inlines = (TrackInlineAdmin,)
     fieldsets = (
         (None, {
-            "fields": ("series", "name", "slug", "year", "discogs_release_id")
+            "fields": (
+                "series", "order_index", "name", "slug", "year",
+                "discogs_release_id"
+            )
         }),
         ("Important dates", {
             "fields": ("created_at", "last_checked_at", "updated_at")

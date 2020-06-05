@@ -11,15 +11,17 @@ class Series(models.Model):
         unique=True
     )
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = "Series"
         verbose_name_plural = "Series"
 
-    def __str__(self):
-        return self.name
-
 
 class Release(models.Model):
+    order_index = models.PositiveIntegerField()
+
     series = models.ForeignKey(
         Series,
         on_delete=models.CASCADE,
