@@ -67,7 +67,10 @@ class Release(models.Model):
         return self.name
 
     class Meta:
-        unique_together = ("series", "slug")
+        unique_together = (
+            ("series", "slug"),
+            ("order_index", "series"),
+        )
 
         verbose_name = "Release"
         verbose_name_plural = "Releases"
@@ -99,7 +102,7 @@ class Track(models.Model):
 
     class Meta:
         unique_together = (
-            ("release", "order_index"),
+            ("order_index", "release"),
         )
 
         verbose_name = "Track"
